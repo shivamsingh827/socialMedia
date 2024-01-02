@@ -9,6 +9,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const navbarStyle = {
     display: 'flex',
+  
     justifyContent: 'space-between',
     padding: '10px',
     background: '#3498db',

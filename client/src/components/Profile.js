@@ -1,9 +1,9 @@
-
 import React, { useEffect, useState } from 'react';
 import QRCode from 'react-qr-code';
 import axios from 'axios';
 import { useUser } from '../Usercontext';
 import SharePopUp from './Sharepopup';
+import '../App.css';
 
 const Profile = () => {
   const { user } = useUser();
@@ -34,16 +34,24 @@ const Profile = () => {
   };
 
   return (
-    <div>
-      <h2>Profile</h2>
+    <div className="profile-container">
       {userData && (
         <>
+          <div className="profile-image-container">
+            {userData.profilePicture && (
+              <img
+                className="profile-image"
+                src={`http://localhost:5000/api/image/${userData.profilePicture}`}
+                alt="Profile"
+              />
+            )}
+          </div>
+          <h2>Profile</h2>
           <p>Name: {userData.name}</p>
           <p>Username: {userData.username}</p>
           <p>Age: {userData.age}</p>
           <p>Mobile Number: {userData.mobileNumber}</p>
-          {/* <QRCode value={`http://localhost:5000/profile/${userData.username}`} /> */}
-          <button onClick={handleShareClick}>Share Profile</button>
+          <button id="btn" onClick={handleShareClick}>Share Profile</button>
         </>
       )}
       {showPopUp && <SharePopUp userData={userData} onClose={handleClosePopUp} />}
